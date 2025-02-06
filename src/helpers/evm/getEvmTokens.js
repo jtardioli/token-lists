@@ -8,7 +8,7 @@ module.exports = async function getEvmTokens(networkId) {
   const tokensByAddress = new Map();
 
   // Fetch from current version
-  const currentTokens = await getTokensFromCurrentList(networkId);
+  // const currentTokens = await getTokensFromCurrentList(networkId);
 
   if (networkId === "ethereum") {
     const geckoEthTokens = await getGeckoEthereumTokens();
@@ -16,11 +16,9 @@ module.exports = async function getEvmTokens(networkId) {
       tokensByAddress.set(token.address, token);
     });
   } else {
-    const currentTokensMap = new Map(currentTokens.map((t) => [t.address, t]));
-    const geckoTokens = await getEvmTokensFromCoingecko(
-      networkId,
-      currentTokensMap
-    );
+    // const currentTokensMap = new Map(currentTokens.map((t) => [t.address, t]));
+    console.log(`Fetching tokens from Coingecko for network ${networkId}`);
+    const geckoTokens = await getEvmTokensFromCoingecko(networkId, new Map());
     geckoTokens.forEach((token) => {
       tokensByAddress.set(token.address, token);
     });
