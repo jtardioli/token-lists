@@ -16,6 +16,7 @@ const platforms = {
   solana: "solana",
   sui: "sui",
   sei: "sei",
+  fraxtal: "fraxtal",
 };
 
 module.exports = function coingeckoPlatformFromNetworkId(networkId) {

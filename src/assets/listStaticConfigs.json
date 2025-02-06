@@ -139,5 +139,13 @@
     "addressType": "sei",
     "chainId": 1,
     "logoURI": "https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/lists/sw_none.png"
+  },
+  "fraxtal": {
+    "id": "fraxtal",
+    "name": "Fraxtal",
+    "addressType": "evm",
+    "chainId": 252,
+    "logoURI": "https://images.octav.fi/chains/fraxtal_icon.svg",
+    "rpcEndpoint": "https://rpc.frax.com"
   }
 }

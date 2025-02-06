@@ -29,6 +29,7 @@ const tokenGenerators = {
   solana: () => getSolanaTokens(),
   sui: () => getSuiTokens(),
   sei: () => seiTokens,
+  fraxtal: () => getEvmTokens("fraxtal"),
 };
 
 // const currentTokenGenerators = {

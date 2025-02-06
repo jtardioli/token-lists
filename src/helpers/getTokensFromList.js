@@ -16,6 +16,7 @@ const solanaTokens = require("../tokens/solana.json");
 const suiTokens = require("../tokens/sui.json");
 const seiTokens = require("../tokens/sei.json");
 const ethereumTokens = require("../tokens/ethereum.json");
+const fraxtalTokens = require("../tokens/fraxtal.json");
 
 const lists = {
   aptos: aptosTokens,
@@ -36,6 +37,7 @@ const lists = {
   solana: solanaTokens,
   sui: suiTokens,
   sei: seiTokens,
+  fraxtal: fraxtalTokens,
 };
 
 module.exports = function getTokensFromList(networkId) {
