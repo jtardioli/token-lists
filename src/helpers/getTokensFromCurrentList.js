@@ -1,6 +1,9 @@
 const { default: axios } = require("axios");
 
 module.exports = async function getTokensFromCurrentList(networkId) {
+  if (networkId === "fraxtal") {
+    return [];
+  }
   let currentList = await axios
     .get(
       `https://github.com/sonarwatch/token-lists/releases/latest/download/sonarwatch.${networkId}.tokenlist.json`,

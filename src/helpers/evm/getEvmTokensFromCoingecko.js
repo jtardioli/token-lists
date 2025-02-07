@@ -16,7 +16,6 @@ module.exports = async function getEvmTokensFromCoingecko(
   networkId,
   currentTokensMap
 ) {
-  console.log("start coingecko");
   const coinsList = await getCoingeckoCoinsList();
   const tokensByAddress = new Map();
   const platform = coingeckoPlatformFromNetworkId(networkId);
@@ -34,7 +33,6 @@ module.exports = async function getEvmTokensFromCoingecko(
 
   for (let i = 0; i < coinsList.length; i++) {
     const coin = coinsList[i];
-    console.log({ coin });
     if (!coin.id || !coin.platforms || !coin.platforms[platform]) continue;
     let address;
     try {
@@ -48,7 +46,6 @@ module.exports = async function getEvmTokensFromCoingecko(
       continue;
     }
     if (tokensByAddress.get(address)) continue;
-    console.log("fetching coin details", coin.id);
     const coinDetailsResponse = await axios
       .get(`https://api.coingecko.com/api/v3/coins/${coin.id}`, {
         params: {
@@ -62,12 +59,10 @@ module.exports = async function getEvmTokensFromCoingecko(
     await sleep(5000);
     if (!coinDetailsResponse || !coinDetailsResponse.data) continue;
     const coinDetails = coinDetailsResponse.data;
-    console.log({ coinDetails });
     let decimals =
       coinDetails.detail_platforms?.[platform].decimal_place || null;
     if (decimals === null) decimals = await getErc20Decimals(address, provider);
     if (decimals === null) continue;
-    console.log({ decimals });
     const isUriValid = uriValidate(coinDetails.image.small);
     const logoURI = isUriValid ? coinDetails.image.small : undefined;
     const token = {

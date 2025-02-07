@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "chainId": 252,
+    "address": "0x2FC7447F6cF71f9aa9E7FF8814B37E55b268Ec91",
+    "name": "Balancer",
+    "symbol": "BAL",
+    "decimals": 18,
+    "logoURI": "https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/fraxtal/0x2FC7447F6cF71f9aa9E7FF8814B37E55b268Ec91.png",
+    "extensions": { "coingeckoId": "balancer" }
+  }
+]

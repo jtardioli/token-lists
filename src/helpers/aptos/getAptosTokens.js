@@ -11,7 +11,10 @@ module.exports = async function getAptosTokens() {
   const currentTokens = await getTokensFromCurrentList(networkId);
 
   const currentTokensMap = new Map(currentTokens.map((t) => [t.address, t]));
+  console.log("before gecko");
   const geckoTokens = await getTokensFromCoingecko(networkId, currentTokensMap);
+  console.log("after gecko");
+
   geckoTokens.forEach((token) => {
     tokensByAddress.set(token.address, token);
   });

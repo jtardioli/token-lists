@@ -12,7 +12,6 @@ if (!listStaticConfig) {
 }
 
 (async () => {
-  console.log(`Starting script for network: ${networkId}`);
   const tokens = await generateTokens(networkId, args);
   const config = {
     ...listStaticConfig,

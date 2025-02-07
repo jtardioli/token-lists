@@ -21,8 +21,10 @@ module.exports = async function getTokensFromCoingecko(
   const chainId = listStaticConfigs[networkId]?.chainId;
   if (!chainId) throw new Error("List static config or chainId is missing");
 
+  console.log("starting");
   for (let i = 0; i < coinsList.length; i++) {
     const coin = coinsList[i];
+    console.log(coin);
     if (!coin.id || !coin.platforms || !coin.platforms[platform]) continue;
     let address;
     try {
@@ -30,6 +32,8 @@ module.exports = async function getTokensFromCoingecko(
     } catch (error) {
       continue;
     }
+
+    console.log(address);
 
     if (currentTokensMap.get(address) && Math.random() > 0.05) {
       tokensByAddress.set(address, currentTokensMap.get(address));
@@ -46,15 +50,19 @@ module.exports = async function getTokensFromCoingecko(
         },
       })
       .catch(() => null);
+    console.log("before sleep");
     await sleep(5000);
+    console.log("after  sleep");
+
     if (!coinDetailsResponse || !coinDetailsResponse.data) continue;
     const coinDetails = coinDetailsResponse.data;
 
     // Decimals
     let decimals =
       coinDetails.detail_platforms?.[platform].decimal_place || null;
-    if (decimals === null)
-      decimals = await getTokenDecimals(networkId, address);
+    if (decimals === null) console.log("start get decimal");
+    decimals = await getTokenDecimals(networkId, address);
+    console.log("after get decimal");
     if (decimals === null) continue;
 
     const isUriValid = uriValidate(coinDetails.image.small);
@@ -72,6 +80,7 @@ module.exports = async function getTokensFromCoingecko(
     };
     tokensByAddress.set(address, token);
   }
-  await sleep(30000);
+  // await sleep(30000);
+  console.log("done");
   return Array.from(tokensByAddress.values());
 };
