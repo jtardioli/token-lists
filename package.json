@@ -1,5 +1,5 @@
 {
-  "name": "@sonarwatch/token-lists",
+  "name": "@jtardioli/token-lists",
   "version": "2.0.0",
   "private": false,
   "description": "Sonarwatch token lists",
